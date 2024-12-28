@@ -20,64 +20,112 @@ namespace Opgaver
 
         public void ArrayListOpgave()
         {
-            /* Opgave 1: Arrays og Lister
-             * 1. Opret et array med 5 forskellige dyrenavne
-             * 2. Konverter arrayet til en List<string>
-             * 3. Tilføj 3 nye dyrenavne til listen
-             * 4. Sorter listen alfabetisk
-             * 5. Udskriv hvert ord på en ny linje
-             * 
-             * Tips:
-             * - Brug List<string> til at oprette listen
-             * - Brug AddRange() eller Add() til at tilføje nye ord
-             * - Brug Sort() til at sortere listen
-             * - Brug foreach til at udskrive ordene
-             */
+            Console.WriteLine("\n=== Opgave 1: Arrays og Lister ===");
+
+            // 1. Opret array med 5 ord
+            string[] ordArray = { "hund", "kat", "mus", "fugl", "fisk" };
+
+            // 2. Konverter til List og tilføj nye ord
+            List<string> ordListe = new List<string>(ordArray);
+
+            // 3. Tilføj 3 nye ord
+            string[] nyeOrd = { "kanin", "hamster", "skildpadde" };
+            ordListe.AddRange(nyeOrd);
+
+            // 4. Sorter listen
+            ordListe.Sort();
+
+            // 5. Udskriv kun den endelige sorterede liste
+            foreach (string ord in ordListe)
+            {
+                Console.WriteLine(ord);
+            }
         }
 
         public void DictionaryOpgave()
         {
-            /* Opgave 2: Dictionary med Dyrelyde
-             * 1. Opret et Dictionary med dyrelyde (f.eks. "hund" -> "vov")
-             * 2. Tag imod input fra brugeren (et dyrenavn)
-             * 3. Hvis dyret findes i dictionary, udskriv dyrets lyd
-             * 4. Hvis dyret ikke findes, udskriv en passende besked
-             * 
-             * Tips:
-             * - Brug Dictionary<string, string>
-             * - Brug ToLower() på input for at gøre søgningen case-insensitive
-             * - Brug ContainsKey() til at tjekke om dyret findes
-             */
+            //Console.WriteLine("\n=== Opgave 2: Dictionary med Dyrelyde ===");
+
+            var dyreLyde = new Dictionary<string, string>
+            {
+                { "hund", "vov" },
+                { "kat", "miav" },
+                { "ko", "muh" },
+                { "gris", "øf" }
+            };
+
+            string dyr = Console.ReadLine().ToLower().Trim();
+
+            if (dyreLyde.ContainsKey(dyr))
+            {
+                Console.WriteLine($"{dyr} siger: {dyreLyde[dyr]}");
+            }
+            else
+            {
+                Console.WriteLine($"Jeg kender ikke lyden af en {dyr}");
+            }
         }
 
         public void ControlFlowOpgave()
         {
-            /* Opgave 3: Control Flow med Collections
-             * 1. Opret en List<int>
-             * 2. Tilføj 100 tilfældige tal mellem 1 og 1000
-             * 3. For hvert tal, udskriv om det er lige eller ulige
-             * 
-             * Tips:
-             * - Brug Random til at generere tilfældige tal
-             * - Brug modulo (%) til at tjekke om et tal er lige
-             * - Brug for-loop til at generere tallene
-             */
+            Console.WriteLine("\n=== Opgave 3: Control Flow med Collections ===");
+
+            List<int> tal = new List<int>();
+            Random random = new Random();
+
+            // Generér 100 tilfældige tal
+            for (int i = 0; i < 100; i++)
+            {
+                tal.Add(random.Next(1, 1001));
+            }
+
+            // Analyser tallene
+            foreach (int nummer in tal)
+            {
+                if (nummer % 2 == 0)
+                {
+                    Console.WriteLine($"{nummer} er et lige tal");
+                }
+                else
+                {
+                    Console.WriteLine($"{nummer} er et ulige tal");
+                }
+            }
         }
 
         public void OrdTaeller()
         {
-            /* Mini Projekt: Ordtæller
-             * 1. Tag imod en tekst fra brugeren
-             * 2. Split teksten op i enkelte ord
-             * 3. Tæl hvor mange gange hvert ord forekommer
-             * 4. Udskriv statistik for hvert ord
-             * 
-             * Tips:
-             * - Brug string.Split() til at dele teksten op
-             * - Brug et Dictionary<string, int> til at tælle ordene
-             * - Brug ToLower() for at gøre sammenligningen case-insensitive
-             * - Husk at håndtere tegnsætning
-             */
+            Console.WriteLine("\n=== Mini Projekt: Ordtæller ===");
+
+            Console.WriteLine("Indtast en tekst:");
+            string tekst = Console.ReadLine().ToLower();
+
+            // Split teksten i ord og fjern tegnsætning
+            string[] ord = tekst.Split(
+                new[] { ' ', '.', ',', '!', '?' },
+                StringSplitOptions.RemoveEmptyEntries
+            );
+
+            // Tæl forekomster af hvert ord
+            Dictionary<string, int> ordTæller = new Dictionary<string, int>();
+
+            foreach (string Enkeltord in ord)
+            {
+                if (ordTæller.ContainsKey(Enkeltord))
+                {
+                    ordTæller[Enkeltord]++;
+                }
+                else
+                {
+                    ordTæller[Enkeltord] = 1;
+                }
+            }
+
+            // Udskriv resultatet
+            foreach (var pair in ordTæller)
+            {
+                Console.WriteLine($"{pair.Key}: {pair.Value}");
+            }
         }
     }
 }
