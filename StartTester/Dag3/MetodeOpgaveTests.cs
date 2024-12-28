@@ -5,11 +5,12 @@ using System.Threading.Tasks;
 
 namespace OpgaverTests.Dag3Tests
 {
-    public class MetodeOpgaveTests
+    [Collection("Sequential")]
+    public class BeregnGennemsnitTests
     {
         private readonly Dag3 _dag3;
 
-        public MetodeOpgaveTests()
+        public BeregnGennemsnitTests()
         {
             _dag3 = new Dag3();
         }
@@ -34,6 +35,17 @@ namespace OpgaverTests.Dag3Tests
             Assert.Contains("Gennemsnit: ", result);
             Assert.DoesNotContain("Gennemsnit: 0", result);
         }
+    }
+
+    [Collection("Sequential")]
+    public class FindStørsteTalTests
+    {
+        private readonly Dag3 _dag3;
+
+        public FindStørsteTalTests()
+        {
+            _dag3 = new Dag3();
+        }
 
         [Fact]
         public void FindStørsteTal_SkalReturnereKorrektTal()
@@ -53,6 +65,17 @@ namespace OpgaverTests.Dag3Tests
 
             // Assert
             Assert.Contains("Største tal: 1000", result);
+        }
+    }
+
+    [Collection("Sequential")]
+    public class TælForekomsterTests
+    {
+        private readonly Dag3 _dag3;
+
+        public TælForekomsterTests()
+        {
+            _dag3 = new Dag3();
         }
 
         [Fact]
@@ -75,4 +98,4 @@ namespace OpgaverTests.Dag3Tests
             Assert.Contains("Antal 8-taller: 3", result);
         }
     }
-} 
+}
