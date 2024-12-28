@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace OpgaverTests.Dag3Tests
 {
-    public class LoopBasicsTests
+    [Collection("Sequential")]
+    public class UdskrivTalRækkeTests
     {
         private readonly Dag3 _dag3;
 
-        public LoopBasicsTests()
+        public UdskrivTalRækkeTests()
         {
             _dag3 = new Dag3();
         }
@@ -44,7 +45,17 @@ namespace OpgaverTests.Dag3Tests
             Assert.Equal(10, numbers.Count);
             Assert.Equal(Enumerable.Range(1, 10), numbers);
         }
+    }
 
+    [Collection("Sequential")]
+    public class GættespilTests
+    {
+        private readonly Dag3 _dag3;
+
+        public GættespilTests()
+        {
+            _dag3 = new Dag3();
+        }
 
         [Fact]
         public void GættespilMedWhileLoop_SkalStoppeEfter10Forsøg()
@@ -70,6 +81,5 @@ namespace OpgaverTests.Dag3Tests
             // Assert
             Assert.Contains("10 forsøg", result);
         }
-
     }
-} 
+}

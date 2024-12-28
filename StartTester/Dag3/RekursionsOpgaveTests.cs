@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace OpgaverTests.Dag3Tests
 {
-    public class RekursionsOpgaveTests
+    [Collection("Sequential")]
+    public class BeregnFakultetTests
     {
         private readonly Dag3 _dag3;
 
-        public RekursionsOpgaveTests()
+        public BeregnFakultetTests()
         {
             _dag3 = new Dag3();
         }
@@ -35,6 +36,17 @@ namespace OpgaverTests.Dag3Tests
             // Assert
             Assert.Contains("Fakultet af 5: 120", result);
         }
+    }
+
+    [Collection("Sequential")]
+    public class NedtællingTests
+    {
+        private readonly Dag3 _dag3;
+
+        public NedtællingTests()
+        {
+            _dag3 = new Dag3();
+        }
 
         [Fact]
         public void Nedtælling_SkalUdskriveTalIRigtigRækkefølge()
@@ -51,7 +63,7 @@ namespace OpgaverTests.Dag3Tests
             task.Wait();
 
             string result = output.ToString();
-            
+
             // Find linjer efter "Nedtælling fra 5:"
             var lines = result.Split('\n')
                              .SkipWhile(line => !line.Contains("Nedtælling fra 5:"))
@@ -68,7 +80,7 @@ namespace OpgaverTests.Dag3Tests
 
             // Assert
             Assert.Equal(6, lines.Count); // 5,4,3,2,1,0
-            Assert.Equal(new[] { 5,4,3,2,1,0 }, lines);
+            Assert.Equal(new[] { 5, 4, 3, 2, 1, 0 }, lines);
         }
     }
-} 
+}
